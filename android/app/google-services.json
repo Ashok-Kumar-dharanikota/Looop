@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910327625603",
+    "project_id": "looop-f41ef",
+    "storage_bucket": "looop-f41ef.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910327625603:android:0bb2f1e98eecdc90cea8b6",
+        "android_client_info": {
+          "package_name": "com.looop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9MG3Ro1COlpJBKaXRB3x2d9IZ7gcv6c0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
