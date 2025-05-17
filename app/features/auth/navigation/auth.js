@@ -3,15 +3,18 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
 
-const auth = () => {
-  const Auth = createNativeStackNavigator();
+const Auth = () => {
+  const Authentication = createNativeStackNavigator();
 
   return (
-    <Auth.Navigator>
-      <Auth.Screen name="login" component={Login} />
-      <Auth.Screen name="register" component={Register} />
-    </Auth.Navigator>
+    <Authentication.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Authentication.Screen name="register" component={Register} />
+      <Authentication.Screen name="login" component={Login} />
+    </Authentication.Navigator>
   );
 };
 
-export default auth;
+export default Auth;

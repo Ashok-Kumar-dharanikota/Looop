@@ -12,12 +12,16 @@ import ViewRecordsPage from './src/screens/ViewRecordsPage';
 import OnBoardNotify from './src/screens/OnBoardNotify';
 import Root from './src/screens/Root';
 import {Provider} from 'react-redux';
-import store from './src/redux/store';
+// import store from './src/redux/store';
+import store from './app/store/store';
+import AppContainer from './app/navigation/AppContainer';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Root />
+      <SafeAreaView>
+        <AppContainer />
+      </SafeAreaView>
     </Provider>
   );
 };
