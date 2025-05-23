@@ -32,7 +32,6 @@ const authSlice = createSlice({
       .addCase(retrieveAll.fulfilled, (state, action) => {
         state.loading = false;
         state.auth = action.payload;
-        console.log(JSON.stringify(state.auth));
       });
   },
 });

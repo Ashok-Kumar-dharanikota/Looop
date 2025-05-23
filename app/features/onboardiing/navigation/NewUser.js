@@ -1,8 +1,9 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Register from '../../auth/screens/Register';
-import Login from '../../auth/screens/Login';
+import OnBoarding from '../screens/OnBoarding';
+import PickCurrency from '../screens/PickCurrency';
+import OnBoardNotify from '../screens/OnBoardNotify';
 
 const NewUser = () => {
   const newUser = createNativeStackNavigator();
@@ -12,8 +13,9 @@ const NewUser = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <newUser.Screen name="login" component={Login} />
-      <newUser.Screen name="register" component={Register} />
+      <newUser.Screen name="onboarding" component={OnBoarding} />
+      <newUser.Screen name="pickCurrency" component={PickCurrency} />
+      <newUser.Screen name="onBoardingNotification" component={OnBoardNotify} />
     </newUser.Navigator>
   );
 };

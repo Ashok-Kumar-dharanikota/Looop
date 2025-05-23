@@ -15,7 +15,7 @@ import showToast from '../services/ShowToast';
 import {useDispatch} from 'react-redux';
 import {saveAppContext} from '../redux/AsyncThunk/AsyncThunk';
 import {AsyncStore} from '../storage/AsyncStore';
-import Currency from '../components/Currency';
+import Currency from '../../app/features/onboardiing/components/Currency';
 const PickCurrency = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();

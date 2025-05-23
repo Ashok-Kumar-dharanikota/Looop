@@ -1,6 +1,6 @@
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
-import IconCircleView from '../components/IconCircleView';
+import IconCircleView from '../../../components/IconCircleView';
 import {icons} from '../../../assets/icons/icons';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';

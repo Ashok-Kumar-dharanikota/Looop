@@ -9,15 +9,14 @@ import {
 import {useCallback, useMemo, useRef, useState} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
-import {countriesCurrency} from '../data/countriesCurrency';
+import {countriesCurrency} from '../../../assets/data/countriesCurrency';
 import {useNavigation} from '@react-navigation/native';
-import showToast from '../services/ShowToast';
+import showToast from '../../../components/ShowToast';
 import {useDispatch} from 'react-redux';
-import {saveAppContext} from '../redux/AsyncThunk/AsyncThunk';
-import {AsyncStore} from '../storage/AsyncStore';
-import Currency from '../../app/features/onboardiing/components/Currency';
+import Currency from '../components/Currency';
+import {updateCurrencyPick} from '../redux/onBoardingSlice';
 
-const DefaultCurrency = () => {
+const PickCurrency = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -25,13 +24,8 @@ const DefaultCurrency = () => {
 
   const handleContinueClick = () => {
     if (currency != null) {
-      dispatch(
-        saveAppContext({
-          key: AsyncStore.CURRENCY_DETAILS_SET_BY_USER,
-          status: JSON.stringify(currency),
-        }),
-      );
-      navigation.goBack();
+      dispatch(updateCurrencyPick(JSON.stringify(currency)));
+      navigation.navigate('onBoardingNotification');
     } else {
       showToast(
         'info',
@@ -57,10 +51,7 @@ const DefaultCurrency = () => {
       <View className=" flex-1">
         <View className=" p-5 justify-between flex-1">
           <View className=" gap-3">
-            <Text className=" font-extrabold text-2xl">Default Currency</Text>
-            <Text className=" font-medium text-gray-600">
-              Your current default currency is
-            </Text>
+            <Text className=" font-extrabold text-2xl">My Currency is</Text>
             <TouchableOpacity
               onPress={() => handleSnapPress(1)}
               className=" p-2 bg-gray-200 rounded-xl flex-wrap">
@@ -82,7 +73,9 @@ const DefaultCurrency = () => {
           <TouchableOpacity
             onPress={handleContinueClick}
             className=" bg-orange-600 p-4 w-full rounded-3xl">
-            <Text className=" text-center text-white font-medium ">Save</Text>
+            <Text className=" text-center text-white font-medium ">
+              Continue
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -103,6 +96,7 @@ const DefaultCurrency = () => {
             />
 
             <BottomSheetFlatList
+              showsVerticalScrollIndicator={false}
               data={countriesCurrency}
               renderItem={({item}) => (
                 <Currency props={item} func={setCurrency} currency={currency} />
@@ -138,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DefaultCurrency;
+export default PickCurrency;

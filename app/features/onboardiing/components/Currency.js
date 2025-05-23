@@ -1,5 +1,5 @@
 import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {icons} from '../assets/icons/icons';
+import {icons} from '../../../../src/assets/icons/icons';
 
 const Currency = ({props, func, currency}) => {
   const handleCurrencyClick = item => {
