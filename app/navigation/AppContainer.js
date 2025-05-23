@@ -1,17 +1,27 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Auth from '../features/auth/navigation/Auth';
 import Toast from 'react-native-toast-message';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import NewUser from '../features/onboardiing/navigation/NewUser';
+import retrieveAll from '../features/auth/redux/AuthThunk';
 
 const AppContainer = () => {
-  const {auth, loading} = useSelector(state => state.authSlice);
-  const {userToken, email, username} = auth;
-  console.log('Auth:', userToken, email, username);
+  const {
+    auth: {userToken},
+  } = useSelector(state => state.authSlice);
+  const {
+    onboarding: {completed},
+  } = useSelector(state => state.onBoardingSlice);
   const Root = createNativeStackNavigator();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(retrieveAll());
+  }, [dispatch]);
 
   return (
     <>
