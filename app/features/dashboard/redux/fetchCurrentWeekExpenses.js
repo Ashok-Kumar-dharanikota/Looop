@@ -1,7 +1,13 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {query, where, getDocs, Timestamp, doc} from 'firebase/firestore';
-
-import firestore from '@react-native-firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  doc,
+  Timestamp,
+  query,
+  where,
+  getDocs,
+} from '@react-native-firebase/firestore';
 
 const fetchCurrentWeekExpenses = createAsyncThunk(
   'dashboard/fetchCurrentWeekExpenses',
@@ -10,7 +16,6 @@ const fetchCurrentWeekExpenses = createAsyncThunk(
       const now = new Date();
       const dayOfWeek = now.getDay();
       const diffToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
-
       const monday = new Date(now);
       monday.setHours(0, 0, 0, 0);
       monday.setDate(now.getDate() - diffToMonday);
@@ -18,31 +23,30 @@ const fetchCurrentWeekExpenses = createAsyncThunk(
       const startOfWeekTimestamp = Timestamp.fromDate(monday);
       const nowTimestamp = Timestamp.now();
 
-      const userDocument = firestore().collection('users').doc(userToken);
-      const expensesCollection = userDocument.collection('expenses');
-      // const userDocument = doc(collection(db, 'users'), userToken);
-      // const expensesCollection = collection(userDocument, 'expenses');
+      const db = getFirestore();
+      const userDocument = doc(db, 'users', userToken);
+      const expensesCollection = collection(userDocument, 'expenses');
 
       const q = query(
         expensesCollection,
-        where('time', '>=', startOfWeekTimestamp),
-        where('time', '<=', nowTimestamp),
+        where('timestamp', '>=', startOfWeekTimestamp),
+        where('timestamp', '<=', nowTimestamp),
       );
 
       const userQuerySnapshot = await getDocs(q);
 
-      let scoresTables = [];
+      let expenses = [];
       userQuerySnapshot?.forEach(doc => {
-        scoresTables.push({
+        expenses.push({
           id: doc.id,
           ...doc.data(),
         });
       });
 
-      return {data: scoresTables};
+      return {data: expenses};
     } catch (error) {
       console.error(error.message);
-      return {error: error.message};
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
