@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import {useDispatch, useSelector} from 'react-redux';
 import NewUser from '../features/onboardiing/navigation/NewUser';
 import retrieveAll from '../features/auth/redux/AuthThunk';
+import UserContainer from './UserContainer';
 
 const AppContainer = () => {
   const {
@@ -32,8 +33,10 @@ const AppContainer = () => {
           }}>
           {userToken == null ? (
             <Root.Screen name="Auth" component={Auth} />
-          ) : (
+          ) : completed ? (
             <Root.Screen name="NewUser" component={NewUser} />
+          ) : (
+            <Root.Screen name="userContainer" component={UserContainer} />
           )}
         </Root.Navigator>
       </NavigationContainer>

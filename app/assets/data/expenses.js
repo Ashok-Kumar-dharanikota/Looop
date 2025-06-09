@@ -1,6 +1,6 @@
 export const expenses = [
   {
-    title: 'Today',
+    title: 'Food',
     total: 124,
     data: [
       {
