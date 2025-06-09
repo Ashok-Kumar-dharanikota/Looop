@@ -20,8 +20,8 @@ const Dashboard = () => {
 
   return (
     <View className=" flex-1 bg-gray-100">
-      <StatusBar backgroundColor={'#f97316'} />
-      <View className=" bg-gray-900 p-5 rounded-b-3xl pt-10">
+      <StatusBar backgroundColor={'#111827'} />
+      <View className=" bg-gray-900 p-5 rounded-b-3xl">
         <View className=" flex-row justify-between">
           <Text className=" text-xl text-white font-semibold">Records</Text>
           <View className=" flex-row gap-5">
